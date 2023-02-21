@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Chow_Patty_HW3.Models.Repository>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Index" asp-controller="Home" method="get">
+ <p class="form-group">
+ Search: <input name="SearchString" class="form-control"/><br/>
+ <button type="submit" class="btn btn-primary">Search</button>
+ <a asp-action="DetailedSearch" class="btn btn-success">Detailed Search</a>
+ <a asp-action="Index" class="btn btn-danger">Show All</a>
+ </p>
+</form>
+
+<div>
+    Displaying @ViewBag.SelectedRepositories out of @ViewBag.AllRepositories Repositories
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RepositoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.URL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StarCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language.LanguageName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepositoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.URL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StarCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.LanguageName)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.RepositoryID">Details</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
